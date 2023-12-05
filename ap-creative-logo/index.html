@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="pingback" href="/xmlrpc.php">
+
+	<script type="text/javascript">document.documentElement.className = 'js';</script>
+
+		<script>
+		function trace(msg) {
+			function var_dump(arr, level) {
+				var dumped_text = "";
+				if (!level)
+					level = 0;
+
+				//The padding given at the beginning of the line.
+				var level_padding = "";
+				for ( var j = 0; j < level + 1; j++ )
+					level_padding += "    ";
+
+				if ( 'object' === typeof(arr) ) { //Array/Hashes/Objects
+					for ( var item in arr ) {
+						var value = arr[item];
+
+						if ( 'object' === typeof(value) ) { //If it is an array,
+							dumped_text += level_padding + "'" + item + "' ...\n";
+							dumped_text += var_dump(value, level + 1);
+						} else {
+							dumped_text += level_padding + "'" + item + "' => " + "(" + typeof(value) + ") \"" + value + "\"\n";
+						}
+					}
+				} else { //Stings/Chars/Numbers etc.
+					dumped_text = "(" + typeof(arr) + ") " + arr;
+					return dumped_text;
+				}
+				if ( 0 === level ) {
+					return '(object)' + String.fromCharCode(10) + dumped_text;
+				} else {
+					return dumped_text;
+				}
+			}
+			trace.trace_queue.push(var_dump(msg));
+		}
+		trace.trace_queue = []; // Don't pollute global namespace
+
+		// Try to keep order of operations by transmitting via queue
+		setInterval(function() {
+			if (0 === trace.trace_queue.length )
+				return;
+			var msg = trace.trace_queue.shift();
+
+			// Transmit message via XHR
+			var xmlhttp;
+			if ( window.XMLHttpRequest ) {
+				// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp = new XMLHttpRequest();
+			} else {
+				// code for IE6, IE5
+				xmlhttp = new ActiveXObject( "Microsoft.XMLHTTP" );
+			}
+			var addy = window.location.toString();
+			var url = trace.getLeftMost( addy, "//" ) + "//";
+			url += trace.getLeftMost( trace.delLeftMost( addy + "/", "//"), "/") + "/ds-plugins/debug-trace/debug-trace.php";
+			xmlhttp.open( "GET", url + "?m=" + encodeURIComponent( msg.toString().substring( 0, 2000 ) ), true );
+			xmlhttp.send();
+		}, 50);
+
+		// Utility parsing functions in trace namespace
+		trace.delLeftMost = function( sSource, sFind ) {
+			for ( var i = 0; i < sSource.length; i = i + 1 ) {
+				var f = sSource.indexOf(sFind, i);
+				if ( -1 !== f ) {
+					return sSource.substr( f + sFind.length, sSource.length );
+					break;
+				}
+			}
+			return sSource;
+		};
+		trace.getLeftMost = function( sSource, sFind ) {
+			for ( var i = 0; i < sSource.length; i = i + 1 ) {
+				var f = sSource.indexOf( sFind, i );
+				if ( -1 !== f ) {
+					return sSource.substr( 0, f );
+					break;
+				}
+			}
+			return sSource;
+		};
+	</script>
+<title>AP Creative Logo | Alain Digital Portfolio</title>
+<meta name="robots" content="max-image-preview:large">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="alternate" type="application/rss+xml" title="Alain Digital Portfolio &raquo; Feed" href="/feed/">
+<link rel="alternate" type="application/rss+xml" title="Alain Digital Portfolio &raquo; Comments Feed" href="/comments/feed/">
+<script type="text/javascript">
+/* <![CDATA[ */
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/svg\/","svgExt":".svg","source":{"concatemoji":"\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.4.1"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"🏳️‍⚧️","🏳️​⚧️")?!1:!n(e,"🇺🇳","🇺​🇳")&&!n(e,"🏴󠁧󠁢󠁥󠁮󠁧󠁿","🏴​󠁧​󠁢​󠁥​󠁮​󠁧​󠁿");case"emoji":return!n(e,"🫱🏻‍🫲🏿","🫱🏻​🫲🏿")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+/* ]]> */
+</script>
+<meta content="Divi v.4.9.3" name="generator">
+<style id="wp-emoji-styles-inline-css" type="text/css">img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}</style>
+<link rel="stylesheet" id="wp-block-library-css" href="/wp-includes/css/dist/block-library/style.min.css?ver=6.4.1" type="text/css" media="all">
+<style id="classic-theme-styles-inline-css" type="text/css">/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}</style>
+<style id="global-styles-inline-css" type="text/css">body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}body .is-layout-grid{display: grid;}body .is-layout-grid > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}</style>
+<link rel="stylesheet" id="serverpress-css" href="/ds-plugins/ds-cli/fontello/css/serverpress.css?ver=6.4.1" type="text/css" media="all">
+<link rel="stylesheet" id="sp-animation-css" href="/ds-plugins/ds-cli/fontello/css/animation.css?ver=6.4.1" type="text/css" media="all">
+<link rel="stylesheet" id="divi-fonts-css" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&#038;subset=latin,latin-ext&#038;display=swap" type="text/css" media="all">
+<link rel="stylesheet" id="divi-style-css" href="/wp-content/themes/Divi/style.css?ver=4.9.3" type="text/css" media="all">
+<link rel="stylesheet" id="et-builder-googlefonts-cached-css" href="https://fonts.googleapis.com/css?family=Courgette:regular|Croissant+One:regular&#038;subset=latin,latin-ext&#038;display=swap" type="text/css" media="all">
+<link rel="stylesheet" id="dashicons-css" href="/wp-includes/css/dashicons.min.css?ver=6.4.1" type="text/css" media="all">
+<script type="text/javascript" src="/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script type="text/javascript" src="/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<script type="text/javascript" id="ds-cli-js-extra">
+/* <![CDATA[ */
+var ds_cli = {"ajaxurl":"\/wp-admin\/admin-ajax.php","nonce":"672768a7e0"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="/ds-plugins/ds-cli/js/ds-cli.js?ver=6.4.1" id="ds-cli-js"></script>
+<link rel="https://api.w.org/" href="/wp-json/">
+<link rel="alternate" type="application/json" href="/wp-json/wp/v2/pages/565">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd">
+<meta name="generator" content="WordPress 6.4.1">
+<link rel="canonical" href="/ap-creative-logo/">
+<link rel="shortlink" href="/?p=565">
+<link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=https%3A%2F%2F%2Fap-creative-logo%2F">
+<link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=https%3A%2F%2F%2Fap-creative-logo%2F&#038;format=xml">
+<style type="text/css">#wp-admin-bar-environment-notice>div,
+	#wpadminbar { background-color: #0073AA !important }
+	#wp-admin-bar-environment-notice { display: none }
+	@media only screen and (min-width: 1030px) {
+	    #wp-admin-bar-environment-notice { display: block }
+	    #wp-admin-bar-environment-notice > div > span {
+	        /*color: #EEE !important;*/
+	        font-size: 130% !important;
+			line-height: 2em !important;
+	    }
+		#wpadminbar #adminbarsearch:before, #wpadminbar .ab-icon:before, #wpadminbar .ab-item:before {
+			color: #eee !important;
+		}
+	}
+	#wpadminbar .ab-empty-item,#wpadminbar a.ab-item,#wpadminbar>#wp-toolbar span.ab-label,#wpadminbar>#wp-toolbar span.noticon{color:#eee;}
+	#adminbarsearch:before,
+	.ab-icon:before,
+	.ab-item:before { color: #EEE !important }</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<link rel="preload" href="/wp-content/themes/Divi/core/admin/fonts/modules.ttf" as="font" crossorigin="anonymous">
+<link rel="shortcut icon">
+<meta name="generator" content="Elementor 3.18.0; features: e_dom_optimization, e_optimized_assets_loading, e_optimized_css_loading, e_font_icon_svg, additional_custom_breakpoints, block_editor_assets_optimize, e_image_loading_optimization; settings: css_print_method-external, google_font-enabled, font_display-swap">
+<style type="text/css" id="custom-background-css">body.custom-background { background-color: #1fe0ba; }</style>
+	<style id="et-divi-customizer-global-cached-inline-styles">body{color:#1c1c1c}h1,h2,h3,h4,h5,h6{color:#000000}.woocommerce #respond input#submit,.woocommerce-page #respond input#submit,.woocommerce #content input.button,.woocommerce-page #content input.button,.woocommerce-message,.woocommerce-error,.woocommerce-info{background:#1fe0ba!important}#et_search_icon:hover,.mobile_menu_bar:before,.mobile_menu_bar:after,.et_toggle_slide_menu:after,.et-social-icon a:hover,.et_pb_sum,.et_pb_pricing li a,.et_pb_pricing_table_button,.et_overlay:before,.entry-summary p.price ins,.woocommerce div.product span.price,.woocommerce-page div.product span.price,.woocommerce #content div.product span.price,.woocommerce-page #content div.product span.price,.woocommerce div.product p.price,.woocommerce-page div.product p.price,.woocommerce #content div.product p.price,.woocommerce-page #content div.product p.price,.et_pb_member_social_links a:hover,.woocommerce .star-rating span:before,.woocommerce-page .star-rating span:before,.et_pb_widget li a:hover,.et_pb_filterable_portfolio .et_pb_portfolio_filters li a.active,.et_pb_filterable_portfolio .et_pb_portofolio_pagination ul li a.active,.et_pb_gallery .et_pb_gallery_pagination ul li a.active,.wp-pagenavi span.current,.wp-pagenavi a:hover,.nav-single a,.tagged_as a,.posted_in a{color:#1fe0ba}.et_pb_contact_submit,.et_password_protected_form .et_submit_button,.et_pb_bg_layout_light .et_pb_newsletter_button,.comment-reply-link,.form-submit .et_pb_button,.et_pb_bg_layout_light .et_pb_promo_button,.et_pb_bg_layout_light .et_pb_more_button,.woocommerce a.button.alt,.woocommerce-page a.button.alt,.woocommerce button.button.alt,.woocommerce button.button.alt.disabled,.woocommerce-page button.button.alt,.woocommerce-page button.button.alt.disabled,.woocommerce input.button.alt,.woocommerce-page input.button.alt,.woocommerce #respond input#submit.alt,.woocommerce-page #respond input#submit.alt,.woocommerce #content input.button.alt,.woocommerce-page #content input.button.alt,.woocommerce a.button,.woocommerce-page a.button,.woocommerce button.button,.woocommerce-page button.button,.woocommerce input.button,.woocommerce-page input.button,.et_pb_contact p input[type="checkbox"]:checked+label i:before,.et_pb_bg_layout_light.et_pb_module.et_pb_button{color:#1fe0ba}.footer-widget h4{color:#1fe0ba}.et-search-form,.nav li ul,.et_mobile_menu,.footer-widget li:before,.et_pb_pricing li:before,blockquote{border-color:#1fe0ba}.et_pb_counter_amount,.et_pb_featured_table .et_pb_pricing_heading,.et_quote_content,.et_link_content,.et_audio_content,.et_pb_post_slider.et_pb_bg_layout_dark,.et_slide_in_menu_container,.et_pb_contact p input[type="radio"]:checked+label i:before{background-color:#1fe0ba}a{color:#1fe0ba}#main-header,#main-header .nav li ul,.et-search-form,#main-header .et_mobile_menu{background-color:#1fe0ba}#main-header .nav li ul{background-color:#00f7f7}.nav li ul{border-color:#f7ea60}#top-header,#et-secondary-nav li ul{background-color:#d6d6d6}#et-secondary-nav li ul{background-color:#2ea3f2}#top-header,#top-header a{color:#0f2afc}#et-secondary-nav li ul a{color:#0c0c0c}.et_header_style_centered .mobile_nav .select_page,.et_header_style_split .mobile_nav .select_page,.et_nav_text_color_light #top-menu>li>a,.et_nav_text_color_dark #top-menu>li>a,#top-menu a,.et_mobile_menu li a,.et_nav_text_color_light .et_mobile_menu li a,.et_nav_text_color_dark .et_mobile_menu li a,#et_search_icon:before,.et_search_form_container input,span.et_close_search_field:after,#et-top-navigation .et-cart-info{color:#2251f9}.et_search_form_container input::-moz-placeholder{color:#2251f9}.et_search_form_container input::-webkit-input-placeholder{color:#2251f9}.et_search_form_container input:-ms-input-placeholder{color:#2251f9}#main-header .nav li ul a{color:#e02b20}#top-menu li.current-menu-ancestor>a,#top-menu li.current-menu-item>a,#top-menu li.current_page_item>a,.et_color_scheme_red #top-menu li.current-menu-ancestor>a,.et_color_scheme_red #top-menu li.current-menu-item>a,.et_color_scheme_red #top-menu li.current_page_item>a,.et_color_scheme_pink #top-menu li.current-menu-ancestor>a,.et_color_scheme_pink #top-menu li.current-menu-item>a,.et_color_scheme_pink #top-menu li.current_page_item>a,.et_color_scheme_orange #top-menu li.current-menu-ancestor>a,.et_color_scheme_orange #top-menu li.current-menu-item>a,.et_color_scheme_orange #top-menu li.current_page_item>a,.et_color_scheme_green #top-menu li.current-menu-ancestor>a,.et_color_scheme_green #top-menu li.current-menu-item>a,.et_color_scheme_green #top-menu li.current_page_item>a{color:#ffffff}#footer-widgets .footer-widget a,#footer-widgets .footer-widget li a,#footer-widgets .footer-widget li a:hover{color:#ffffff}.footer-widget{color:#ffffff}.footer-widget .et_pb_widget div,.footer-widget .et_pb_widget ul,.footer-widget .et_pb_widget ol,.footer-widget .et_pb_widget label{line-height:1.7em}#et-footer-nav .bottom-nav li.current-menu-item a{color:#2ea3f2}body .et_pb_bg_layout_light.et_pb_button:hover,body .et_pb_bg_layout_light .et_pb_button:hover,body .et_pb_button:hover{color:#0c71c3!important;background-color:rgba(38,8,8,0.9);border-radius:0px}.woocommerce a.button.alt:hover,.woocommerce-page a.button.alt:hover,.woocommerce button.button.alt:hover,.woocommerce button.button.alt.disabled:hover,.woocommerce-page button.button.alt:hover,.woocommerce-page button.button.alt.disabled:hover,.woocommerce input.button.alt:hover,.woocommerce-page input.button.alt:hover,.woocommerce #respond input#submit.alt:hover,.woocommerce-page #respond input#submit.alt:hover,.woocommerce #content input.button.alt:hover,.woocommerce-page #content input.button.alt:hover,.woocommerce a.button:hover,.woocommerce-page a.button:hover,.woocommerce button.button:hover,.woocommerce-page button.button:hover,.woocommerce input.button:hover,.woocommerce-page input.button:hover,.woocommerce #respond input#submit:hover,.woocommerce-page #respond input#submit:hover,.woocommerce #content input.button:hover,.woocommerce-page #content input.button:hover{color:#0c71c3!important;background-color:rgba(38,8,8,0.9)!important;border-radius:0px}body #page-container .et_slide_in_menu_container{background:#2ea3f2}@media only screen and (min-width:981px){.footer-widget h4{font-size:18px}.et_header_style_centered.et_hide_primary_logo #main-header:not(.et-fixed-header) .logo_container,.et_header_style_centered.et_hide_fixed_logo #main-header.et-fixed-header .logo_container{height:11.88px}.et-fixed-header#top-header,.et-fixed-header#top-header #et-secondary-nav li ul{background-color:#63b9f2}}@media only screen and (min-width:1350px){.et_pb_row{padding:27px 0}.et_pb_section{padding:54px 0}.single.et_pb_pagebuilder_layout.et_full_width_page .et_post_meta_wrapper{padding-top:81px}.et_pb_fullwidth_section{padding:0}}h1,h1.et_pb_contact_main_title,.et_pb_title_container h1{font-size:40px}h2,.product .related h2,.et_pb_column_1_2 .et_quote_content blockquote p{font-size:34px}h3{font-size:29px}h4,.et_pb_circle_counter h3,.et_pb_number_counter h3,.et_pb_column_1_3 .et_pb_post h2,.et_pb_column_1_4 .et_pb_post h2,.et_pb_blog_grid h2,.et_pb_column_1_3 .et_quote_content blockquote p,.et_pb_column_3_8 .et_quote_content blockquote p,.et_pb_column_1_4 .et_quote_content blockquote p,.et_pb_blog_grid .et_quote_content blockquote p,.et_pb_column_1_3 .et_link_content h2,.et_pb_column_3_8 .et_link_content h2,.et_pb_column_1_4 .et_link_content h2,.et_pb_blog_grid .et_link_content h2,.et_pb_column_1_3 .et_audio_content h2,.et_pb_column_3_8 .et_audio_content h2,.et_pb_column_1_4 .et_audio_content h2,.et_pb_blog_grid .et_audio_content h2,.et_pb_column_3_8 .et_pb_audio_module_content h2,.et_pb_column_1_3 .et_pb_audio_module_content h2,.et_pb_gallery_grid .et_pb_gallery_item h3,.et_pb_portfolio_grid .et_pb_portfolio_item h2,.et_pb_filterable_portfolio_grid .et_pb_portfolio_item h2{font-size:24px}h5{font-size:21px}h6{font-size:18px}.et_pb_slide_description .et_pb_slide_title{font-size:61px}.woocommerce ul.products li.product h3,.woocommerce-page ul.products li.product h3,.et_pb_gallery_grid .et_pb_gallery_item h3,.et_pb_portfolio_grid .et_pb_portfolio_item h2,.et_pb_filterable_portfolio_grid .et_pb_portfolio_item h2,.et_pb_column_1_4 .et_pb_audio_module_content h2{font-size:21px}@media only screen and (max-width:980px){#main-header,#main-header .nav li ul,.et-search-form,#main-header .et_mobile_menu{background-color:#ffffff}.et_header_style_centered .mobile_nav .select_page,.et_header_style_split .mobile_nav .select_page,.et_mobile_menu li a,.mobile_menu_bar:before,.et_nav_text_color_light #top-menu>li>a,.et_nav_text_color_dark #top-menu>li>a,#top-menu a,.et_mobile_menu li a,#et_search_icon:before,#et_top_search .et-search-form input,.et_search_form_container input,#et-top-navigation .et-cart-info{color:rgba(0,0,0,0.6)}.et_close_search_field:after{color:rgba(0,0,0,0.6)!important}.et_search_form_container input::-moz-placeholder{color:rgba(0,0,0,0.6)}.et_search_form_container input::-webkit-input-placeholder{color:rgba(0,0,0,0.6)}.et_search_form_container input:-ms-input-placeholder{color:rgba(0,0,0,0.6)}}</style>
+</head>
+<body class="page-template-default page page-id-565 custom-background et_pb_button_helper_class et_fullwidth_nav et_fixed_nav et_hide_nav et_hide_primary_logo et_hide_fixed_logo et_primary_nav_dropdown_animation_flip et_secondary_nav_dropdown_animation_slide et_header_style_left et_pb_footer_columns4 et_cover_background et_pb_gutter et_pb_gutters3 et_pb_pagebuilder_layout et_no_sidebar et_divi_theme et-db et_minified_js et_minified_css elementor-default elementor-kit-7">
+	<div id="page-container">
+
+	
+	
+			<header id="main-header" data-height-onload="66">
+			<div class="container clearfix et_menu_container">
+							<div class="logo_container">
+					<span class="logo_helper"></span>
+					<a href="/">
+						<img src="/wp-content/themes/Divi/images/logo.png" alt="Alain Digital Portfolio" id="logo" data-height-percentage="54">
+					</a>
+				</div>
+							<div id="et-top-navigation" data-height="66" data-fixed-height="40">
+											<nav id="top-menu-nav">
+						<ul id="top-menu" class="nav">
+<li id="menu-item-976" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-976"><a href="/">Start</a></li>
+<li id="menu-item-942" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-942"><a href="/get-to-know-me/">Get to know Me</a></li>
+<li id="menu-item-319" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-ancestor current_page_ancestor menu-item-has-children menu-item-319">
+<a href="/the-portfolio/">My Portfolio</a>
+<ul class="sub-menu">
+	<li id="menu-item-329" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-329">
+<a href="/logo-page/">Logo Designs</a>
+	<ul class="sub-menu">
+		<li id="menu-item-566" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-565 current_page_item menu-item-566"><a href="/ap-creative-logo/" aria-current="page">AP Creative Logo</a></li>
+		<li id="menu-item-328" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-328"><a href="/landscaping/">Landscaping</a></li>
+	</ul>
+</li>
+	<li id="menu-item-325" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-325">
+<a href="/graphic-design/">Graphic Design</a>
+	<ul class="sub-menu">
+		<li id="menu-item-419" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-419"><a href="/roar-like-a-king/">Roar Like A King</a></li>
+		<li id="menu-item-423" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-423"><a href="/the-big-cat/">The Big Cat</a></li>
+		<li id="menu-item-426" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-426"><a href="/dragons-2/">Dragons</a></li>
+		<li id="menu-item-430" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-430"><a href="/other-graphic-design/">Other Graphic Design</a></li>
+	</ul>
+</li>
+	<li id="menu-item-326" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-326">
+<a href="/poster-advert/">Poster &#038; Advert</a>
+	<ul class="sub-menu">
+		<li id="menu-item-434" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-434"><a href="/poster/">Poster</a></li>
+		<li id="menu-item-437" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-437"><a href="/healthicious-bites/">Healthicious Bites</a></li>
+		<li id="menu-item-440" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-440"><a href="/other-posters/">Other Posters</a></li>
+	</ul>
+</li>
+	<li id="menu-item-324" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-324">
+<a href="/facebook-cover-banner/">Facebook Cover &#038; Banner</a>
+	<ul class="sub-menu">
+		<li id="menu-item-449" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-449"><a href="/small-cover/">Small Cover</a></li>
+		<li id="menu-item-451" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-451"><a href="/big-cover/">Big Cover</a></li>
+		<li id="menu-item-453" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-453"><a href="/animated-banner/">Animated Banner</a></li>
+	</ul>
+</li>
+	<li id="menu-item-323" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-323">
+<a href="/business-card/">Business Card</a>
+	<ul class="sub-menu">
+		<li id="menu-item-460" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-460"><a href="/rejoice/">Rejoice</a></li>
+		<li id="menu-item-462" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-462"><a href="/ap-creative/">AP Creative</a></li>
+		<li id="menu-item-464" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-464"><a href="/other-business-card/">Other Business Card</a></li>
+	</ul>
+</li>
+	<li id="menu-item-322" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-322">
+<a href="/greeting-invitation-other-cards/">Greeting, Invitation &#038; Other Cards</a>
+	<ul class="sub-menu">
+		<li id="menu-item-471" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-471"><a href="/invitation-card/">Invitation Card</a></li>
+		<li id="menu-item-473" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-473"><a href="/other-cards/">Other Cards</a></li>
+	</ul>
+</li>
+	<li id="menu-item-321" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-321">
+<a href="/table-name-card/">Table Name Card</a>
+	<ul class="sub-menu">
+		<li id="menu-item-478" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-478"><a href="/birds-theme/">Birds Theme</a></li>
+		<li id="menu-item-480" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-480"><a href="/butterfly-theme/">Butterfly Theme</a></li>
+	</ul>
+</li>
+	<li id="menu-item-320" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-320">
+<a href="/ui-ux-design/">UI/UX Design</a>
+	<ul class="sub-menu">
+		<li id="menu-item-934" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-934"><a href="/ui-ux-project/">UI UX Project</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-1317" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1317"><a href="/get-in-touch/">Get in Touch</a></li>
+</ul>						</nav>
+					
+					
+					
+										<div id="et_top_search">
+						<span id="et_search_icon"></span>
+					</div>
+					
+					<div id="et_mobile_nav_menu">
+				<div class="mobile_nav closed">
+					<span class="select_page">Select Page</span>
+					<span class="mobile_menu_bar mobile_menu_bar_toggle"></span>
+				</div>
+			</div>				</div> <!-- #et-top-navigation -->
+			</div> <!-- .container -->
+			<div class="et_search_outer">
+				<div class="container et_search_form_container">
+					<form role="search" method="get" class="et-search-form" action="https://www.alaindigitalportfoliowebsite.dev.cc/">
+					<input type="search" class="et-search-field" placeholder="Search &hellip;" value="" name="s" title="Search for:">					</form>
+					<span class="et_close_search_field"></span>
+				</div>
+			</div>
+		</header> <!-- #main-header -->
+			<div id="et-main-area">
+	
+<div id="main-content">
+
+
+			
+				<article id="post-565" class="post-565 page type-page status-publish hentry">
+
+				
+					<div class="entry-content">
+					<div id="et-boc" class="et-boc">
+			
+		<div class="et-l et-l--post">
+			<div class="et_builder_inner_content et_pb_gutters3">
+<div class="et_pb_section et_pb_section_0 et_pb_with_background et_section_regular">
+				
+				
+				
+				
+					<div class="et_pb_with_border et_pb_row et_pb_row_0">
+				<div class="et_pb_column et_pb_column_4_4 et_pb_column_0  et_pb_css_mix_blend_mode_passthrough et-last-child">
+				
+				
+				<div class="et_pb_module et_pb_text et_pb_text_0  et_pb_text_align_left et_pb_bg_layout_light">
+				
+				
+				<div class="et_pb_text_inner"><p>This section is about the creation of a logo for an online printing company named AP Creative Printing. The sequence of this logo creative is shown by the ascending number. Upon clicking on the number which reflects the step in the creation process of the final logo, a model/sketch will be visible.</p></div>
+			</div> <!-- .et_pb_text -->
+			</div> <!-- .et_pb_column -->
+				
+				
+			</div> <!-- .et_pb_row --><div class="et_pb_with_border et_pb_row et_pb_row_1">
+				<div class="et_pb_column et_pb_column_1_3 et_pb_column_1  et_pb_css_mix_blend_mode_passthrough">
+				
+				
+				<div class="et_pb_module et_pb_accordion et_pb_accordion_0">
+				
+				
+				<div class="et_pb_toggle et_pb_module et_pb_accordion_item et_pb_accordion_item_0  et_pb_toggle_open">
+				
+				
+				<h1 class="et_pb_toggle_title">1</h1>
+				<div class="et_pb_toggle_content clearfix">
+<p style="text-align: center;"><img fetchpriority="high" decoding="async" src="/wp-content/uploads/2023/11/Image_3-removebg-preview-300x282.png" width="300" height="282" alt="" class="wp-image-571 alignnone size-medium" srcset="/wp-content/uploads/2023/11/Image_3-removebg-preview-300x282.png 300w, /wp-content/uploads/2023/11/Image_3-removebg-preview.png 342w" sizes="(max-width: 300px) 100vw, 300px"></p>
+<p style="text-align: justify;">The first idea is the representation of the creative side of the business.</p>
+</div> <!-- .et_pb_toggle_content -->
+			</div> <!-- .et_pb_toggle --><div class="et_pb_toggle et_pb_module et_pb_accordion_item et_pb_accordion_item_1  et_pb_toggle_close">
+				
+				
+				<h1 class="et_pb_toggle_title">2</h1>
+				<div class="et_pb_toggle_content clearfix">
+<p style="text-align: justify;">
+</p>
+<p><img decoding="async" src="/wp-content/uploads/2023/11/Image_5-removebg-preview-300x215.png" width="275" height="197" alt="" class="wp-image-572 alignnone size-medium" style="display: block; margin-left: auto; margin-right: auto;" srcset="/wp-content/uploads/2023/11/Image_5-removebg-preview-300x215.png 300w, /wp-content/uploads/2023/11/Image_5-removebg-preview.png 470w" sizes="(max-width: 275px) 100vw, 275px"></p>
+<p style="text-align: justify;">The second idea is the company name included in the simple creative logo.</p>
+</div> <!-- .et_pb_toggle_content -->
+			</div> <!-- .et_pb_toggle --><div class="et_pb_toggle et_pb_module et_pb_accordion_item et_pb_accordion_item_2  et_pb_toggle_close">
+				
+				
+				<h1 class="et_pb_toggle_title">3</h1>
+				<div class="et_pb_toggle_content clearfix"><p style="text-align: justify;"><img decoding="async" src="/wp-content/uploads/2023/11/Image_2-removebg-preview-300x282.png" width="300" height="282" alt="" class="wp-image-570 alignnone size-medium" srcset="/wp-content/uploads/2023/11/Image_2-removebg-preview-300x282.png 300w, /wp-content/uploads/2023/11/Image_2-removebg-preview.png 342w" sizes="(max-width: 300px) 100vw, 300px">This idea shows a modification in the font and name is done.</p></div> <!-- .et_pb_toggle_content -->
+			</div> <!-- .et_pb_toggle -->
+			</div> <!-- .et_pb_accordion -->
+			</div> <!-- .et_pb_column --><div class="et_pb_column et_pb_column_1_3 et_pb_column_2  et_pb_css_mix_blend_mode_passthrough">
+				
+				
+				<div class="et_pb_module et_pb_accordion et_pb_accordion_1">
+				
+				
+				<div class="et_pb_toggle et_pb_module et_pb_accordion_item et_pb_accordion_item_3  et_pb_toggle_open">
+				
+				
+				<h1 class="et_pb_toggle_title">4</h1>
+				<div class="et_pb_toggle_content clearfix">
+<p><img loading="lazy" decoding="async" src="/wp-content/uploads/2023/11/LOGO_Final_1-removebg-preview-300x300.png" width="211" height="211" alt="" class="wp-image-580 alignnone size-medium" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<p style="text-align: justify;">The font has changed as well as the shape of the logo. The name is arranged in circular form.</p>
+</div> <!-- .et_pb_toggle_content -->
+			</div> <!-- .et_pb_toggle --><div class="et_pb_toggle et_pb_module et_pb_accordion_item et_pb_accordion_item_4  et_pb_toggle_close">
+				
+				
+				<h1 class="et_pb_toggle_title">5</h1>
+				<div class="et_pb_toggle_content clearfix">
+<p><img loading="lazy" decoding="async" src="/wp-content/uploads/2023/11/Picture2-300x300.png" width="214" height="214" alt="" class="wp-image-581 alignnone size-medium" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<p>Colors has been added to the logo and it becomes more attractive.</p>
+</div> <!-- .et_pb_toggle_content -->
+			</div> <!-- .et_pb_toggle --><div class="et_pb_toggle et_pb_module et_pb_accordion_item et_pb_accordion_item_5  et_pb_toggle_close">
+				
+				
+				<h1 class="et_pb_toggle_title">6</h1>
+				<div class="et_pb_toggle_content clearfix"><p><img loading="lazy" decoding="async" src="/wp-content/uploads/2023/11/LOGO-Final-1-3.bmp" width="210" height="210" alt="" class="wp-image-579 alignnone size-full" style="display: block; margin-left: auto; margin-right: auto;">The same logo as the previous has been used but a background color has been included.</p></div> <!-- .et_pb_toggle_content -->
+			</div> <!-- .et_pb_toggle -->
+			</div> <!-- .et_pb_accordion -->
+			</div> <!-- .et_pb_column --><div class="et_pb_column et_pb_column_1_3 et_pb_column_3  et_pb_css_mix_blend_mode_passthrough et-last-child">
+				
+				
+				<div class="et_pb_module et_pb_accordion et_pb_accordion_2">
+				
+				
+				<div class="et_pb_toggle et_pb_module et_pb_accordion_item et_pb_accordion_item_6  et_pb_toggle_open">
+				
+				
+				<h1 class="et_pb_toggle_title">7</h1>
+				<div class="et_pb_toggle_content clearfix"><p><img loading="lazy" decoding="async" src="/wp-content/uploads/2023/11/Untitled_design-removebg-preview-300x300.png" width="203" height="203" alt="" class="wp-image-584 alignnone size-medium" style="display: block; margin-left: auto; margin-right: auto;">This idea used the circular shape but the creative design has been removed and replaced by the name of the company.</p></div> <!-- .et_pb_toggle_content -->
+			</div> <!-- .et_pb_toggle --><div class="et_pb_toggle et_pb_module et_pb_accordion_item et_pb_accordion_item_7  et_pb_toggle_close">
+				
+				
+				<h1 class="et_pb_toggle_title">8</h1>
+				<div class="et_pb_toggle_content clearfix">
+<p><img loading="lazy" decoding="async" src="/wp-content/uploads/2023/11/Untitled_design1-removebg-preview-300x300.png" width="168" height="168" alt="" class="wp-image-582 alignnone size-medium" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<p style="text-align: justify;">The picture of a swan has been placed on the left and another on the right of the logo as there was a gap between the upper and lower words.</p>
+</div> <!-- .et_pb_toggle_content -->
+			</div> <!-- .et_pb_toggle --><div class="et_pb_toggle et_pb_module et_pb_accordion_item et_pb_accordion_item_8  et_pb_toggle_close">
+				
+				
+				<h1 class="et_pb_toggle_title">9</h1>
+				<div class="et_pb_toggle_content clearfix"><p><img loading="lazy" decoding="async" src="/wp-content/uploads/2023/11/Untitled_design2-removebg-preview-300x300.png" width="213" height="213" alt="" class="wp-image-583 alignnone size-medium" style="display: block; margin-left: auto; margin-right: auto;">The only modification in this design is with the swan picture. A reflection of the swan is added on each side.</p></div> <!-- .et_pb_toggle_content -->
+			</div> <!-- .et_pb_toggle -->
+			</div> <!-- .et_pb_accordion -->
+			</div> <!-- .et_pb_column -->
+				
+				
+			</div> <!-- .et_pb_row --><div class="et_pb_with_border et_pb_row et_pb_row_2">
+				<div class="et_pb_column et_pb_column_1_2 et_pb_column_4  et_pb_css_mix_blend_mode_passthrough">
+				
+				
+				<div class="et_pb_module et_pb_accordion et_pb_accordion_3">
+				
+				
+				<div class="et_pb_toggle et_pb_module et_pb_accordion_item et_pb_accordion_item_9  et_pb_toggle_open">
+				
+				
+				<h1 class="et_pb_toggle_title">10</h1>
+				<div class="et_pb_toggle_content clearfix">
+<p style="text-align: center;"><img loading="lazy" decoding="async" src="/wp-content/uploads/2023/11/LOGO-5-2-300x300.png" width="300" height="300" alt="" class="wp-image-577 alignnone size-medium"></p>
+<p style="text-align: justify;">This design and  also those that follow, have color backgound added in the circular form. This one has a gradient blue to light blue from the top to bottom.</p>
+</div> <!-- .et_pb_toggle_content -->
+			</div> <!-- .et_pb_toggle --><div class="et_pb_toggle et_pb_module et_pb_accordion_item et_pb_accordion_item_10  et_pb_toggle_close">
+				
+				
+				<h1 class="et_pb_toggle_title">11</h1>
+				<div class="et_pb_toggle_content clearfix">
+<p style="text-align: center;"><img loading="lazy" decoding="async" src="/wp-content/uploads/2023/11/LOGO-4-2-300x300.png" width="300" height="300" alt="" class="wp-image-576 alignnone size-medium"></p>
+<p style="text-align: justify;">
+</p>
+<p style="text-align: justify;">The color blue in this background here represents the blue sky.</p>
+</div> <!-- .et_pb_toggle_content -->
+			</div> <!-- .et_pb_toggle --><div class="et_pb_toggle et_pb_module et_pb_accordion_item et_pb_accordion_item_11  et_pb_toggle_close">
+				
+				
+				<h1 class="et_pb_toggle_title">12</h1>
+				<div class="et_pb_toggle_content clearfix">
+<p style="text-align: center;"><img loading="lazy" decoding="async" src="/wp-content/uploads/2023/11/LOGO-2-2-300x300.png" width="300" height="300" alt="" class="wp-image-574 alignnone size-medium"></p>
+<p style="text-align: justify;"> The background here represents the sea with some waves. The latter is represented by the lighter color.</p>
+</div> <!-- .et_pb_toggle_content -->
+			</div> <!-- .et_pb_toggle -->
+			</div> <!-- .et_pb_accordion -->
+			</div> <!-- .et_pb_column --><div class="et_pb_column et_pb_column_1_2 et_pb_column_5  et_pb_css_mix_blend_mode_passthrough et-last-child">
+				
+				
+				<div class="et_pb_module et_pb_accordion et_pb_accordion_4">
+				
+				
+				<div class="et_pb_toggle et_pb_module et_pb_accordion_item et_pb_accordion_item_12  et_pb_toggle_open">
+				
+				
+				<h1 class="et_pb_toggle_title">13</h1>
+				<div class="et_pb_toggle_content clearfix">
+<p style="text-align: center;">
+</p>
+<p style="text-align: center;">
+</p>
+<p style="text-align: center;"><img loading="lazy" decoding="async" src="/wp-content/uploads/2023/11/LOGO-3-2-300x300.png" width="300" height="300" alt="" class="wp-image-575 alignnone size-medium"></p>
+<p style="text-align: justify;">
+</p>
+<p style="text-align: justify;"> The background here represents lighting like candles light.</p>
+</div> <!-- .et_pb_toggle_content -->
+			</div> <!-- .et_pb_toggle --><div class="et_pb_toggle et_pb_module et_pb_accordion_item et_pb_accordion_item_13  et_pb_toggle_close">
+				
+				
+				<h1 class="et_pb_toggle_title">14</h1>
+				<div class="et_pb_toggle_content clearfix">
+<p style="text-align: center;"><img loading="lazy" decoding="async" src="/wp-content/uploads/2023/11/LOGO-6-2-300x300.png" width="300" height="300" alt="" class="wp-image-578 alignnone size-medium"></p>
+<p style="text-align: justify;"> The background here clearly shows variou rocks with different shapes and colors.</p>
+</div> <!-- .et_pb_toggle_content -->
+			</div> <!-- .et_pb_toggle --><div class="et_pb_toggle et_pb_module et_pb_accordion_item et_pb_accordion_item_14  et_pb_toggle_close">
+				
+				
+				<h1 class="et_pb_toggle_title">15</h1>
+				<div class="et_pb_toggle_content clearfix">
+<p style="text-align: center;"><img loading="lazy" decoding="async" src="/wp-content/uploads/2023/11/LOGO-1-2-300x300.png" width="300" height="300" alt="" class="wp-image-573 alignnone size-medium"></p>
+<p style="text-align: justify;"> The background in this design is the sea and the sky. The horizon is visible in the middle.</p>
+</div> <!-- .et_pb_toggle_content -->
+			</div> <!-- .et_pb_toggle -->
+			</div> <!-- .et_pb_accordion -->
+			</div> <!-- .et_pb_column -->
+				
+				
+			</div> <!-- .et_pb_row -->
+				
+				
+			</div> <!-- .et_pb_section -->		</div>
+<!-- .et_builder_inner_content -->
+	</div>
+<!-- .et-l -->
+	
+			
+		</div>
+<!-- #et-boc -->
+							</div> <!-- .entry-content -->
+
+				
+				</article> <!-- .et_pb_post -->
+
+			
+
+</div> <!-- #main-content -->
+
+
+			<footer id="main-footer">
+				
+
+		
+				<div id="footer-bottom">
+					<div class="container clearfix">
+				<ul class="et-social-icons">
+
+	<li class="et-social-icon et-social-facebook">
+		<a href="#" class="icon">
+			<span>Facebook</span>
+		</a>
+	</li>
+	<li class="et-social-icon et-social-twitter">
+		<a href="#" class="icon">
+			<span>Twitter</span>
+		</a>
+	</li>
+	<li class="et-social-icon et-social-google-plus">
+		<a href="#" class="icon">
+			<span>Google</span>
+		</a>
+	</li>
+	<li class="et-social-icon et-social-instagram">
+		<a href="#" class="icon">
+			<span>Instagram</span>
+		</a>
+	</li>
+	<li class="et-social-icon et-social-rss">
+		<a href="/feed/" class="icon">
+			<span>RSS</span>
+		</a>
+	</li>
+
+</ul>					</div>	<!-- .container -->
+				</div>
+			</footer> <!-- #main-footer -->
+		</div> <!-- #et-main-area -->
+
+
+	</div> <!-- #page-container -->
+
+	<script type="text/javascript" id="divi-custom-script-js-extra">
+/* <![CDATA[ */
+var DIVI = {"item_count":"%d Item","items_count":"%d Items"};
+var et_shortcodes_strings = {"previous":"Previous","next":"Next"};
+var et_pb_custom = {"ajaxurl":"\/wp-admin\/admin-ajax.php","images_uri":"\/wp-content\/themes\/Divi\/images","builder_images_uri":"\/wp-content\/themes\/Divi\/includes\/builder\/images","et_frontend_nonce":"86b6a0d03c","subscription_failed":"Please, check the fields below to make sure you entered the correct information.","et_ab_log_nonce":"3c9d63baf4","fill_message":"Please, fill in the following fields:","contact_error_message":"Please, fix the following errors:","invalid":"Invalid email","captcha":"Captcha","prev":"Prev","previous":"Previous","next":"Next","wrong_captcha":"You entered the wrong number in captcha.","wrong_checkbox":"Checkbox","ignore_waypoints":"no","is_divi_theme_used":"1","widget_search_selector":".widget_search","ab_tests":[],"is_ab_testing_active":"","page_id":"565","unique_test_id":"","ab_bounce_rate":"5","is_cache_plugin_active":"no","is_shortcode_tracking":"","tinymce_uri":""}; var et_builder_utils_params = {"condition":{"diviTheme":true,"extraTheme":false},"scrollLocations":["app","top"],"builderScrollLocations":{"desktop":"app","tablet":"app","phone":"app"},"onloadScrollLocation":"app","builderType":"fe"}; var et_frontend_scripts = {"builderCssContainerPrefix":"#et-boc","builderCssLayoutPrefix":"#et-boc .et-l"};
+var et_pb_box_shadow_elements = [];
+var et_pb_motion_elements = {"desktop":[],"tablet":[],"phone":[]};
+var et_pb_sticky_elements = [];
+/* ]]> */
+</script>
+<script type="text/javascript" src="/wp-content/themes/Divi/js/custom.unified.js?ver=4.9.3" id="divi-custom-script-js"></script>
+<script type="text/javascript" src="/wp-content/themes/Divi/core/admin/js/common.js?ver=4.9.3" id="et-core-common-js"></script>
+<style id="et-builder-module-design-565-cached-inline-styles">.page.et_pb_pagebuilder_layout #main-content{background-color:#1fe0ba}.et-l--post>.et_builder_inner_content>.et_pb_section{background-color:#1fd7e0}.et_pb_section_0{height:1850px;min-height:100px;max-height:2000px}.et_pb_section_0.et_pb_section{padding-top:50px;padding-bottom:50px;background-color:#1FE0BA!important}.et_pb_row_0{background-color:#1FD7E0;border-width:4px}.et_pb_row_1{background-color:#1FD7E0;border-width:4px}.et_pb_row_2{background-color:#1FD7E0;border-width:4px}.et_pb_row_0.et_pb_row{padding-top:20px!important;padding-right:50px!important;padding-bottom:20px!important;padding-left:50px!important;margin-bottom:50px!important;padding-top:20px;padding-right:50px;padding-bottom:20px;padding-left:50px}.et_pb_text_0.et_pb_text{color:#ffffff!important}.et_pb_text_0{font-family:'Courgette',handwriting;font-size:20px;letter-spacing:1px}.et_pb_accordion_3.et_pb_accordion h5.et_pb_toggle_title,.et_pb_accordion_3.et_pb_accordion h1.et_pb_toggle_title,.et_pb_accordion_3.et_pb_accordion h2.et_pb_toggle_title,.et_pb_accordion_3.et_pb_accordion h3.et_pb_toggle_title,.et_pb_accordion_3.et_pb_accordion h4.et_pb_toggle_title,.et_pb_accordion_3.et_pb_accordion h6.et_pb_toggle_title{font-family:'Croissant One',display;font-weight:700;font-size:35px;text-align:center}.et_pb_accordion_4.et_pb_accordion h5.et_pb_toggle_title,.et_pb_accordion_4.et_pb_accordion h1.et_pb_toggle_title,.et_pb_accordion_4.et_pb_accordion h2.et_pb_toggle_title,.et_pb_accordion_4.et_pb_accordion h3.et_pb_toggle_title,.et_pb_accordion_4.et_pb_accordion h4.et_pb_toggle_title,.et_pb_accordion_4.et_pb_accordion h6.et_pb_toggle_title{font-family:'Croissant One',display;font-weight:700;font-size:35px;text-align:center}.et_pb_accordion_1.et_pb_accordion h5.et_pb_toggle_title,.et_pb_accordion_1.et_pb_accordion h1.et_pb_toggle_title,.et_pb_accordion_1.et_pb_accordion h2.et_pb_toggle_title,.et_pb_accordion_1.et_pb_accordion h3.et_pb_toggle_title,.et_pb_accordion_1.et_pb_accordion h4.et_pb_toggle_title,.et_pb_accordion_1.et_pb_accordion h6.et_pb_toggle_title{font-family:'Croissant One',display;font-weight:700;font-size:35px;text-align:center}.et_pb_accordion_0.et_pb_accordion h5.et_pb_toggle_title,.et_pb_accordion_0.et_pb_accordion h1.et_pb_toggle_title,.et_pb_accordion_0.et_pb_accordion h2.et_pb_toggle_title,.et_pb_accordion_0.et_pb_accordion h3.et_pb_toggle_title,.et_pb_accordion_0.et_pb_accordion h4.et_pb_toggle_title,.et_pb_accordion_0.et_pb_accordion h6.et_pb_toggle_title{font-family:'Croissant One',display;font-weight:700;font-size:35px;text-align:center}.et_pb_accordion_2.et_pb_accordion h5.et_pb_toggle_title,.et_pb_accordion_2.et_pb_accordion h1.et_pb_toggle_title,.et_pb_accordion_2.et_pb_accordion h2.et_pb_toggle_title,.et_pb_accordion_2.et_pb_accordion h3.et_pb_toggle_title,.et_pb_accordion_2.et_pb_accordion h4.et_pb_toggle_title,.et_pb_accordion_2.et_pb_accordion h6.et_pb_toggle_title{font-family:'Croissant One',display;font-weight:700;font-size:35px;text-align:center}.et_pb_accordion_1.et_pb_accordion{background-color:#1FD7E0}.et_pb_accordion_0.et_pb_accordion{background-color:#1FD7E0}.et_pb_accordion_3.et_pb_accordion{background-color:#1FD7E0}.et_pb_accordion_4.et_pb_accordion{background-color:#1FD7E0}.et_pb_accordion_2.et_pb_accordion{background-color:#1FD7E0}.et_pb_accordion_3 .et_pb_toggle_open{background-color:#88C4DD}.et_pb_accordion_0 .et_pb_toggle_open{background-color:#88C4DD}.et_pb_accordion_1 .et_pb_toggle_open{background-color:#88C4DD}.et_pb_accordion_4 .et_pb_toggle_open{background-color:#88C4DD}.et_pb_accordion_2 .et_pb_toggle_open{background-color:#88C4DD}.et_pb_accordion_3 .et_pb_toggle_close{background-color:#1FE0BA}.et_pb_accordion_2 .et_pb_toggle_close{background-color:#1FE0BA}.et_pb_accordion_4 .et_pb_toggle_close{background-color:#1FE0BA}.et_pb_accordion_0 .et_pb_toggle_close{background-color:#1FE0BA}.et_pb_accordion_1 .et_pb_toggle_close{background-color:#1FE0BA}.et_pb_accordion .et_pb_module.et_pb_accordion_item_8.et_pb_toggle{border-width:2px;border-color:#000000}.et_pb_accordion .et_pb_module.et_pb_accordion_item_0.et_pb_toggle{border-width:2px;border-color:#000000}.et_pb_accordion .et_pb_module.et_pb_accordion_item_1.et_pb_toggle{border-width:2px;border-color:#000000}.et_pb_accordion .et_pb_module.et_pb_accordion_item_14.et_pb_toggle{border-width:2px;border-color:#000000}.et_pb_accordion .et_pb_module.et_pb_accordion_item_13.et_pb_toggle{border-width:2px;border-color:#000000}.et_pb_accordion .et_pb_module.et_pb_accordion_item_12.et_pb_toggle{border-width:2px;border-color:#000000}.et_pb_accordion .et_pb_module.et_pb_accordion_item_2.et_pb_toggle{border-width:2px;border-color:#000000}.et_pb_accordion .et_pb_module.et_pb_accordion_item_3.et_pb_toggle{border-width:2px;border-color:#000000}.et_pb_accordion .et_pb_module.et_pb_accordion_item_7.et_pb_toggle{border-width:2px;border-color:#000000}.et_pb_accordion .et_pb_module.et_pb_accordion_item_4.et_pb_toggle{border-width:2px;border-color:#000000}.et_pb_accordion .et_pb_module.et_pb_accordion_item_11.et_pb_toggle{border-width:2px;border-color:#000000}.et_pb_accordion .et_pb_module.et_pb_accordion_item_10.et_pb_toggle{border-width:2px;border-color:#000000}.et_pb_accordion .et_pb_module.et_pb_accordion_item_9.et_pb_toggle{border-width:2px;border-color:#000000}.et_pb_accordion .et_pb_module.et_pb_accordion_item_5.et_pb_toggle{border-width:2px;border-color:#000000}.et_pb_accordion .et_pb_module.et_pb_accordion_item_6.et_pb_toggle{border-width:2px;border-color:#000000}.et_pb_row_1.et_pb_row{padding-top:50px!important;padding-right:50px!important;padding-bottom:50px!important;padding-left:50px!important;margin-bottom:0px!important;margin-left:auto!important;margin-right:auto!important;padding-top:50px;padding-right:50px;padding-bottom:50px;padding-left:50px}.et_pb_row_2.et_pb_row{padding-top:50px!important;padding-right:50px!important;padding-bottom:50px!important;padding-left:50px!important;margin-top:20px!important;margin-left:auto!important;margin-right:auto!important;padding-top:50px;padding-right:50px;padding-bottom:50px;padding-left:50px}</style>
+</body>
+</html>
